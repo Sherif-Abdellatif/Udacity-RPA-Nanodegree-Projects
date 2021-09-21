@@ -8,5 +8,5 @@ In this process the robot reads through emails and download the invoices receive
 ______________________________________________________________________________________________________________________________
 
 Walkthrough of the project: 
-	
-[![IMAGE ALT TEXT HERE](https://img./0.jpg)]()
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/2yHSVuhkaw8/0.jpg)](https://youtu.be/2yHSVuhkaw8)
