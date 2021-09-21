@@ -1,0 +1,5 @@
+Hi,
+
+The Information regarding invoice number ({0}) for customer ({1}) is uploaded successfully to the orchestrator queue.
+
+Thanks

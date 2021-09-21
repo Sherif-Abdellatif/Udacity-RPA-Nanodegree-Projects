@@ -1,0 +1,7 @@
+Hello {0},
+
+The attachment you sent was incorrect.
+
+Kindly check the attachment and send again.
+
+Thanks.

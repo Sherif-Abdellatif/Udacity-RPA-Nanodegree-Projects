@@ -1,0 +1,346 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Utility_InvoicesProcessing" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
+    <x:Property Name="in_OutlookAccount" Type="InArgument(x:String)" />
+    <x:Property Name="in_EmailAddress" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1240,1313</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Utility_InvoicesProcessing_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="26">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Discreption: For each invoice in the Input folder, invoke the required xaml files to process that invoice.&#xA;&#xA;Pre-Condition: &#xA;Input folder contains the invoices.&#xA;&#xA;Post-Condition: &#xA;All the invoices are processed successfully &amp; information is uploaded to the queue.&#xA;&#xA;Project: Udacity_InvoiceScraping&#xA;Author: Sherif Radwan&#xA;Date: 24-07-2021" DisplayName="Utility_InvoicesProcessing" sap:VirtualizedContainerService.HintSize="480,1248" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - Starting message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Utility_InvoicesProcessing, execution started&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <TryCatch DisplayName="Try Catch - Processing invoices" sap:VirtualizedContainerService.HintSize="438,702" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence DisplayName="Sequence - Try" sap:VirtualizedContainerService.HintSize="242,453" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="s:String[]" Name="InvoicesArr" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="Check if the Input folder contains the invoices to be processed." DisplayName="Sequence -PreCond check" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign - invoices array" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[InvoicesArr]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles("Data\Input","*_*_*.pdf")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[InvoicesArr.Count &gt; 0]" DisplayName="If - Input folder contains invoices" sap:VirtualizedContainerService.HintSize="262,51" sap2010:WorkflowViewState.IdRef="If_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <ui:LogMessage DisplayName="Log Message - Input folder contains invoices" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[&quot;Utility_InvoicesProcessing, Input folder contains the invoices, proceeding to process them&quot;]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:LogMessage>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Sequence - Input folder is empty" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - Input folder is empty" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;Utility_InvoicesProcessing, the Input folder is empty&quot;]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:LogMessage>
+                  <Throw DisplayName="Throw - SE (data folder is empty)" Exception="[New System.SystemException(&quot;Utility_InvoicesProcessing, the Input folder is empty&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+          <Sequence sap2010:Annotation.AnnotationText="For each invoice in the Input folder, extract specific data and store those values in an Excel spreadsheet and uploaded a subset of values to the Orchestrator Queue. And finally, email the spreadsheet to yourself." DisplayName="Sequence - Processing invoices" sap:VirtualizedContainerService.HintSize="1007,822" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - Invoice" sap:VirtualizedContainerService.HintSize="965,688" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[InvoicesArr]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="Invoice" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body - For each invoice" sap:VirtualizedContainerService.HintSize="929,554" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="InvoiceNo" />
+                      <Variable x:TypeArguments="x:String" Name="InvoiceDate" />
+                      <Variable x:TypeArguments="x:String" Name="SubTotal" />
+                      <Variable x:TypeArguments="x:String" Name="GST" />
+                      <Variable x:TypeArguments="x:String" Name="Total" />
+                      <Variable x:TypeArguments="scg:List(s:String[])" Name="ItemsLst" />
+                      <Variable x:TypeArguments="x:String" Name="CustomerName" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Adobe_ExtractInfo workflow" sap:VirtualizedContainerService.HintSize="887,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Adobe\Adobe_ExtractInfo.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_InvoicePath">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Invoice" />
+                        </InArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_InvoiceNo">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="InvoiceNo" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_SubTotal">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="SubTotal" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_GST">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="GST" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_Total">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Total" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="scg:List(s:String[])" x:Key="out_ItemsLst">
+                          <mva:VisualBasicReference x:TypeArguments="scg:List(s:String[])" ExpressionText="ItemsLst" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_CustomerName">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="CustomerName" />
+                        </OutArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_InvoiceDate">
+                          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="InvoiceDate" />
+                        </OutArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <Parallel DisplayName="Parallel - Upload and save invoice info" sap:VirtualizedContainerService.HintSize="887,158" sap2010:WorkflowViewState.IdRef="Parallel_1">
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Orchestrator_UploadInfoToQueue workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Orchestrator\Orchestrator_UploadInfoToQueue.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">[in_QueueName]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_SubTotal">[SubTotal]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_GST">[GST]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Total">[Total]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNo">[InvoiceNo]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Excel_SaveInfo workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Excel\Excel_SaveInfo.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_SubTotal">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="SubTotal" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_GST">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="GST" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Total">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Total" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="scg:List(s:String[])" x:Key="in_ItemsLst">
+                            <mva:VisualBasicValue x:TypeArguments="scg:List(s:String[])" ExpressionText="ItemsLst" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_ExcelFilePath">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.Combine(&quot;Data\Invoices&quot;, InvoiceDate.Split(&quot; &quot;c)(2), InvoiceDate.Split(&quot; &quot;c)(0), CustomerName.Replace(&quot; &quot;,&quot;&quot;)+&quot;_&quot;+InvoiceNo+&quot;.xlsx&quot;)" />
+                          </InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </Parallel>
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Outlook_SendInfo workflow" sap:VirtualizedContainerService.HintSize="887,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Outlook\Outlook_SendInfo.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_OutlookAccount">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_OutlookAccount" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_AttachFilePath">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Path.Combine(&quot;Data\Invoices&quot;, InvoiceDate.Split(&quot; &quot;c)(2), InvoiceDate.Split(&quot; &quot;c)(0), CustomerName.Replace(&quot; &quot;,&quot;&quot;)+&quot;_&quot;+InvoiceNo+&quot;.xlsx&quot;)" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_EmailAddress">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_EmailAddress" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceNo">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="InvoiceNo" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_CustomerName">
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CustomerName" />
+                        </InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+            </ui:ForEach>
+          </Sequence>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:SystemException" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:SystemException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:SystemException" Name="SE" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Sequence - SE" sap:VirtualizedContainerService.HintSize="242,66" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message - SE info message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Utility_InvoicesProcessing, System.SystemException&quot; +vbCr+&#xA;&quot;Message : &quot; + SE.Message +vbCr+&#xA;&quot;Source : &quot; + SE.Source]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Rethrow DisplayName="Rethrow - SE" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="E" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Sequence - Ex" sap:VirtualizedContainerService.HintSize="242,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message - Ex info message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[&quot;Utility_InvoicesProcessing, System.Exception&quot; +vbCr+&#xA;&quot;Message : &quot; + E.Message +vbCr+&#xA;&quot;Source : &quot; + E.Source]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Rethrow DisplayName="Rethrow - E" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Rethrow_2" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <ui:LogMessage DisplayName="Log Message - Ending message" sap:VirtualizedContainerService.HintSize="438,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Utility_InvoicesProcessing, execution ended&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+  </Sequence>
+</Activity>
