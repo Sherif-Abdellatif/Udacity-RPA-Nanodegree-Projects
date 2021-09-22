@@ -9,4 +9,4 @@ ________________________________________________________________________________
 
 Walkthrough of the project: 
 	
-[![IMAGE ALT TEXT HERE](https://img./0.jpg)]()
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/1ed2lf8hL5Q/0.jpg)](https://youtu.be/1ed2lf8hL5Q)
