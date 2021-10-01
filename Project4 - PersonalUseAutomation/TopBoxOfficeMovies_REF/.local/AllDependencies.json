@@ -5306,11 +5306,11 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "TopBoxOffice_REF",
-      "projectName": "TopBoxOffice_REF",
-      "projectPath": "E:\\Projects\\RPA\\UiPath\\UdacityNanodegree_Projects\\Udacity_TopBoxOfficeMovies\\TopBoxOfficeMovies_REF\\.local",
+      "projectUniqueName": "TopBoxOfficeMovies_REF",
+      "projectName": "TopBoxOfficeMovies_REF",
+      "projectPath": "E:\\Projects\\RPA\\UiPath\\UdacityNanodegree_Projects\\Project4 - PersonalUseAutomation\\TopBoxOfficeMovies_REF\\.local",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\RPA\\UiPath\\UdacityNanodegree_Projects\\Udacity_TopBoxOfficeMovies\\TopBoxOfficeMovies_REF\\.local"
+      "outputPath": "E:\\Projects\\RPA\\UiPath\\UdacityNanodegree_Projects\\Project4 - PersonalUseAutomation\\TopBoxOfficeMovies_REF\\.local"
     },
     "frameworks": {
       "net461": {
